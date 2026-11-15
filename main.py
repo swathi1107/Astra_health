@@ -6,14 +6,13 @@ from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy import select, func
 from sqlalchemy.orm import Session
-from .database import Base, engine, get_db
-from . import models as m
-from .schemas import MissionIn, AstronautIn, ReadingIn, ReviewIn, AlertReviewIn
-from .services.baseline_service import generate_baseline
-from .services.assessment_service import assess
-from .schemas import BootstrapIn, LoginIn, UserCreateIn, UserAdminUpdate, PasswordChangeIn
-from .security import current_user, require_roles, hash_password, verify_password, new_session
-
+from database import Base, engine, get_db
+import models as m
+from schemas import MissionIn, AstronautIn, ReadingIn, ReviewIn, AlertReviewIn
+from services.baseline_service import generate_baseline
+from services.assessment_service import assess
+from schemas import BootstrapIn, LoginIn, UserCreateIn, UserAdminUpdate, PasswordChangeIn
+from security import current_user, require_roles, hash_password, verify_password, new_session
 Base.metadata.create_all(bind=engine)
 app = FastAPI(title="ASTRA HEALTH", description="Offline-first personal-baseline decision-support prototype. Not a diagnostic system.", version="1.0.0")
 FRONT = Path(__file__).resolve().parent.parent / "frontend"
